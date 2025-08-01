@@ -123,22 +123,13 @@ int main(void)
 						 
 						 HAL_UART_Transmit(&USART2, (uint8_t*)msg, strlen(msg), HAL_MAX_DELAY);
 						  HAL_Delay(1000); 
-	    	         	//Lcd_Clear(); //this is user defined fucntion
-	                 //Lcd_Set_Cursor(1,3);//this is user defined fucntion
-	                  //Lcd_Print_String("HIGH TEMPRATURE");//this is user defined fucntion
-	  				//Lcd_Print_temprature_value(temp1);//this is user defined fucntion to print on temprature value  LCD
 
 	    	         }
 	               else if(adc_value< TEMPRATURE_THRESOLD_VALUE)//check if ADC temprature value is less than thresold
 	               {
 					   	 HAL_UART_Transmit(&USART2, (uint8_t*)msg, strlen(msg), HAL_MAX_DELAY);
 						  HAL_Delay(1000);
-	                 /*  //Lcd_Clear();
-	  		        Lcd_Set_Cursor(1,1);
-	  		        Lcd_Print_String("LOW TEMPRATURE");
-	  				Lcd_Set_Cursor(2,5);
-	  				Lcd_Print_temprature_value(temp1);//this is user defined fucntion to print on LCD
-	  			 */
+
 	                }
 	                else //check if ADC temprature value is equal to thresold
 	                {
@@ -146,17 +137,12 @@ int main(void)
 						  HAL_Delay(1000);
 						  uint8_t data[10];
                           HAL_UART_Receive(&USART2, data, 2F0, 1000);
-	    	         	/*  Lcd_Clear();
-	  		         Lcd_Set_Cursor(1,3);
-	  		         Lcd_Print_String("NORMAL TEMPRATURE");
-	  				 Lcd_Print_temprature_value(temp1); //th // is is user defined fucntion to print on LCD */
 	                 }
 
 
   }
   /* USER CODE END 3 */
 }
-mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,]
 /**
   * @brief System Clock Configuration
   * @retval None
