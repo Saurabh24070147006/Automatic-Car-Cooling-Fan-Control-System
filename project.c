@@ -20,7 +20,6 @@ USER CODE BEGIN Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include<stdio.h>
-#include<string.h>
 #include "stm32f4xx_hal.h"
 #include "stm32f4xx_hal_gpio.h"
 #include "stm32f4xx_hal_adc.h"
@@ -100,11 +99,14 @@ int main(void)
   MX_ADC1_Init();
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
-    uini_8t msg[]="normal temperature";
+    uint8_t msg1[]="normal temperature";
+    uint8_t msg2[]="medium temperature";
+    uint8_t msg3[]="overheat temperature";
 	uint8_t data[20];
+   HAL_ADC_Start(&hadc1); 
   /* USER CODE END 2 */
 
-  /* Infinite loop */fuart
+  /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
@@ -112,31 +114,32 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 	  /* USER CODE BEGIN 3 */
-	          HAL_ADC_Start(&hadc1);  //staring ADC
-	  			 HAL_ADC_PollForConversion(&hadc1, 1000); //Doing conversion
-	  			 adc_value=HAL_ADC_GetValue(&hadc1); // reading the ADC value and string in variable "adc_value"
+	          
+	  			  HAL_ADC_PollForConversion(&hadc1, 1000); //Doing conversion
+	  			  uint32_t adc_value=
+            HAL_ADC_GetValue(&hadc1); // reading the ADC value and string in variable "adc_value"
 
 
 	    	         if(adc_value> TEMPRATURE_THRESOLD_VALUE) //check if ADC temprature value is out of range temorature
 	    	         {
 						 
 						 
-						 HAL_UART_Transmit(&USART2, (uint8_t*)msg, strlen(msg), HAL_MAX_DELAY);
-						  HAL_Delay(1000); 
+						        HAL_UART_Transmit(&USART2, (uint8_t*)msg, strlen(msg), 500);
+						        HAL_Delay(1000); 
 
 	    	         }
-	               else if(adc_value< TEMPRATURE_THRESOLD_VALUE)//check if ADC temprature value is less than thresold
+	              else if(adc_value< TEMPRATURE_THRESOLD_VALUE)//check if ADC temprature value is less than thresold
 	               {
-					   	 HAL_UART_Transmit(&USART2, (uint8_t*)msg, strlen(msg), HAL_MAX_DELAY);
-						  HAL_Delay(1000);
+					   	       HAL_UART_Transmit(&USART2, (uint8_t*)msg, strlen(msg), 500);
+						         HAL_Delay(1000);
 
 	                }
-	                else //check if ADC temprature value is equal to thresold
+	              else //check if ADC temprature value is equal to thresold
 	                {
-						  HAL_UART_Transmit(&USART2, (uint8_t*)msg, strlen(msg), HAL_MAX_DELAY);
-						  HAL_Delay(1000);
-						  uint8_t data[10];
-                          HAL_UART_Receive(&USART2, data, 2F0, 1000);
+						         HAL_UART_Transmit(&USART2, (uint8_t*)msg, strlen(msg), 500);
+						         HAL_Delay(1000);
+						  
+                         
 	                 }
 
 

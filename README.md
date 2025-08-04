@@ -30,3 +30,4 @@ This project implements a real-time automatic engine cooling system using an **S
                                           |                    |
                                       GPIO High           GPIO Low
                                         (Fan ON)           (Fan OFF)
+
